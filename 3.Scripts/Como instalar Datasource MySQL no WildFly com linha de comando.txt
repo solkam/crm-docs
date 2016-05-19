@@ -1,0 +1,15 @@
+
+Como Instalar Datasource MySQL no WildFly com linha de comando
+**************************************************************
+
+ OBS: Criar usuario no BD, criar com:
+      grant all privileges on *.* to 'crm'@'localhost' identified by 'crm789'
+ 
+ 
+ module add --name=com.mysql --resources=c:\temp\mysql-connector-java-5.1.36-bin.jar --dependencies=javax.api,javax.transaction.api
+ 
+ /subsystem=datasources/jdbc-driver=mysql:add(driver-name="mysql",driver-module-name="com.mysql",driver-class-name="com.mysql.jdbc.Driver")
+ 
+ data-source add --jndi-name=java:/crmDS --name=MySQLPool --connection-url=jdbc:mysql://localhost/db_crm --driver-name=mysql --user-name=crm --password=crm789
+ 
+ 
