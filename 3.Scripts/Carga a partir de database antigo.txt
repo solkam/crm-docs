@@ -1,0 +1,40 @@
+#Carga do database 'db_crm2' a partir do database 'db_crm'
+##########################################################
+
+use db_crm2;
+
+# Maturidade
+insert into Maturidade (id, descricao, atualizadoEm, atualizadoPor, criadoEm , criadoPor, maxIdade , minIdade , empresa_id)
+select id, descricao, atualizadoEm, atualizadoPor, criadoEm , criadoPor, maxIdade , minIdade , empresa_id  from db_crm.maturidade;
+
+# Pessoa
+insert into Pessoa (id,documentoCPF,documentoPassporte,documentoRG,emailAlternativo,emailPrincipal, empregadoComo, empregadoEm, enderecoBairro, enderecoCep, enderecoCidade, enderecoCompleto, enderecoUF, genero, imagemBinario, imagemExtensao, indicadoPor, atualizadoEm, atualizadoPor, criadoEm, criadoPor, nascimentoAno, nascimentoDia, nascimentoMes, primeiroNome, socialFacebook, socialGooglePlus, socialLinkedIn, socialTwitter, sobreNome, telefoneCelular1 , telefoneCelular1Operadora, telefoneCelular2, telefoneCelular2Operadora, telefoneComercial, telefoneResidencial, empresa_id, maturidade_id)
+select id,documentoCPF,documentoPassporte,documentoRG,emailAlternativo,emailPrincipal, empregadoComo, empregadoEm, enderecoBairro, enderecoCep, enderecoCidade, enderecoCompleto, enderecoUF, genero, imagemBinario, imagemExtensao, indicadoPor, atualizadoEm, atualizadoPor, criadoEm, criadoPor, nascimentoAno, nascimentoDia, nascimentoMes, primeiroNome, socialFacebook, socialGooglePlus, socialLinkedIn, socialTwitter, sobreNome, telefoneCelular1 , telefoneCelular1Operadora, telefoneCelular2, telefoneCelular2Operadora, telefoneComercial, telefoneResidencial, empresa_id, maturidade_id  from db_crm.Pessoa;
+
+
+# Categoria
+insert into CategoriaProduto select * from db_crm.CategoriaProduto;
+
+# Produto
+insert into Produto (id, descricao, flagAtivo, observacao, empresa_id, atualizadoEm, atualizadoPor, criadoEm, criadoPor, categoria_id)
+select id, descricao, flagAtivo, observacao, empresa_id, atualizadoEm, atualizadoPor, criadoEm, criadoPor, categoria_id from db_crm.Produto;
+
+# Campanha
+insert into Campanha (id, dataFim, dataInicio, descricao, flagAtivo, atualizadoEm, atualizadoPor, criadoPor, observacao, empresa_id)
+select id, dataFim, dataInicio, descricao, flagAtivo, atualizadoEm, atualizadoPor, criadoPor, observacao, empresa_id from db_crm.Campanha;
+
+# Interação
+insert into InteracaoCampanha (id, data, nota, campanha_id, pessoa_id, responsavel_id, humor)
+select id, data, nota, campanha_id, pessoa_id, responsavel_id, humor from db_crm.InteracaoCampanha;
+
+# Area Interesse
+insert into AreaInteresse (id,descricao,flagAtivo,atualizadoEm,atualizadoPor,criadoEm,criadoPor,empresa_id)
+select id,descricao,flagAtivo,atualizadoEm,atualizadoPor,criadoEm,criadoPor,empresa_id from db_crm.AreaInteresse;
+
+# Profissao
+insert into Profissao (id,descricao,flagAtivo,atualizadoEm,atualizadoPor,criadoEm,criadoPor,empresa_id)
+select id,descricao,flagAtivo,atualizadoEm,atualizadoPor,criadoEm,criadoPor,empresa_id from db_crm.Profissao;
+
+# Venda
+ insert into Venda (id,codVenda,data,precoFinal,empresa_id,pessoa_id,produto_id,atualizadoEm,atualizadoPor,criadoEm,criadoPor)
+ select id,codVenda,data,precoFinal,empresa_id,pessoa_id,produto_id,atualizadoEm,atualizadoPor,criadoEm,criadoPor from db_crm.Venda;
